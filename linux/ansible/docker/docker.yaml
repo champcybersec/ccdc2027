@@ -1,0 +1,12 @@
+- name: transfer this jawn
+  ansible.builtin.copy:
+    src: linux/ansible/docker/local_docker.sh
+    dest: /tmp/docker_enum.sh
+    mode: 0777
+- name: Run this jawn
+  ansible.builtin.command: /tmp/docker_enum.sh
+  changed_when: false
+  register: docker_enum
+- name: print this jawn
+  ansible.builtin.debug:
+    msg: "{{ docker_enum.stdout_lines }}"
