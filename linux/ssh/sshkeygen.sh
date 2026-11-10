@@ -76,6 +76,7 @@ echo "Private key: $KEY_FILE"
 echo "Public key:  $KEY_FILE.pub"
 echo
 echo "Test SSH key authentication before enabling key-only mode."
+cat $KEY_FILE
 echo
 echo "Example:"
 echo "ssh -i ${HOSTNAME}-${USER_NAME}-ed25519 ${USER_NAME}@SERVER_IP"
