@@ -55,25 +55,6 @@ documentation for every OS, service and protocol, so you can do every step by ha
 | 5 | IIS: config backup, no directory browsing, no `Server`/`X-Powered-By` headers, TRACE blocked, LocalSystem app pools and WebDAV flagged; .NET strong crypto; optional TLS 1.0/1.1 off | Print Spooler off, secure DNS dynamic updates, restricted zone transfers, LDAP signing check (enforcing is off by default because it can break apps that log in to AD) |
 | 6 | Firewall on, allow `$AllowedTcpPorts` | Firewall on with Windows' built-in AD/DNS/Kerberos/RDP rule groups |
 
-## How to run them
-
-**Before running anything:** open the script and read the **SETTINGS** block at the top. Check
-`ALLOWED_PORTS` (or `$AllowedTcpPorts`) contains every scored port.
-
-On haf and djupi we don't yet know which port the service uses. Run the script once with
-`APPLY_FIREWALL="no"`, look at STEP 4's "Which program owns each port" output, add the port,
-then run again with `"yes"`.
-
-```sh
-# Linux / Alpine / OpenWRT (as root). The log file keeps everything it printed.
-sh kvigindis.sh 2>&1 | tee /root/kvigindis-hardening.log
-```
-
-```powershell
-# Windows (PowerShell as Administrator). The log goes to C:\HardeningBackup-<date>\
-Set-ExecutionPolicy -Scope Process Bypass -Force
-.\borgar.ps1
-```
 
 **Backups and undo:**
 * Linux: every changed file is in `/root/hardening-backup-<date>/` (the path `/etc/ssh/sshd_config` is saved as `_etc_ssh_sshd_config`). Copy it back and restart the service.
